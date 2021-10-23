@@ -13,15 +13,15 @@ class TodoService {
     return this.list.find((todo) => todo.id == id);
   }
 
-  create(todo) {
-    const newTodo = { id: nanoid(4), ...todo };
+  create({ activity }) {
+    const newTodo = { id: nanoid(4), activity };
     this.list.unshift(newTodo);
     return newTodo;
   }
 
-  update(id, updated) {
+  update(id, { activity }) {
     const index = this.list.findIndex((todo) => todo.id == id);
-    const updatedTodo = { ...this.list[index], ...updated };
+    const updatedTodo = { ...this.list[index], activity };
     this.list[index] = updatedTodo;
     return updatedTodo;
   }
