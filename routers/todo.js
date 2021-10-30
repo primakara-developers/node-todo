@@ -1,10 +1,12 @@
 const { Router } = require("express");
 const TodoController = require("../controllers/todo");
-const TodoService = require("../services/todo");
+const TodoSqlService = require("../services/todo_sql");
+const { Todo } = require("../models");
 
 const router = Router();
+
 const controller = new TodoController({
-  todoService: new TodoService(),
+  todoService: new TodoSqlService({ todoModel: Todo }),
 });
 
 router.get("/", (req, res) => {
